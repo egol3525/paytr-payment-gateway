@@ -1,0 +1,47 @@
+<p align="center"><a href="https://codenteq.com" target="_blank"><img src="src/Resources/assets/images/paytr.svg" width="288"></a></p>
+
+# PayTR Payment Gateway
+[![License](https://poser.pugx.org/codenteq/paytr-payment-gateway/license)](https://github.com/codenteq/paytr-payment-gateway/blob/master/LICENSE)
+[![Total Downloads](https://poser.pugx.org/codenteq/paytr-payment-gateway/d/total)](https://packagist.org/packages/codenteq/paytr-payment-gateway)
+
+## 1. Introduction:
+
+Install this package now to receive secure payments in your online store. PayTR offers an easy and secure payment gateway.
+
+## 2. Requirements:
+
+* **PHP**: 8.1 or higher.
+* **Bagisto**: v2.*
+Bagisto'ya PayTR Manuel Kurulum Kılavuzu 
+1. Paketi indir github.com/codenteq/paytr-payment-gateway adresinden ZIP olarak indir. 
+2. Dosyaları kopyala ZIP içindeki src klasörünün içindeki 6 klasörü (Config, Http, 
+Payment, Providers, Resources, Routes) sunucuda packages/Webkul/PayTR/src/ içine
+at. 
+3. composer.json güncelle Ana dizindeki composer.json dosyasında autoload > psr-4
+bölümüne ekle: 
+json 
+"Webkul\\PayTR\\": "packages/Webkul/PayTR/src" 
+4. bootstrap/providers.php güncelle Dosyanın başına use satırını, return dizisine de 
+PayTRServiceProvider::class satırını ekle: 
+php 
+use Webkul\PayTR\Providers\PayTRServiceProvider;
+// ...
+PayTRServiceProvider::class, 
+5. vendor/composer/autoload_psr4.php güncelle En üste ekle: 
+php 
+'Webkul\\PayTR\\' => array($baseDir . '/packages/Webkul/PayTR/src'), 
+6. vendor/composer/autoload_static.php güncelle İki yere ekle: 
+ prefixLengthsPsr4 bölümüne: 'Webkul\\PayTR\\' => 13, 
+ prefixDirsPsr4 bölümüne: 
+php 
+'Webkul\\PayTR\\' => array(0 => __DIR__ . '/../..' . '/packages/Webkul/PayTR/src'), 
+7. Cache temizle clear.php dosyası oluşturup çalıştır (bootstrap/cache, storage/framework
+altındaki dosyaları siler). 
+8. .env dosyasına ekle 
+PAYTR_MERCHANT_ID=
+PAYTR_MERCHANT_KEY=
+PAYTR_MERCHANT_SALT= 
+9. Admin panelde aktifleştir Configure → Sales → Payment Methods → PayTR → Aktif et. 
+ 
+## How to contribute
+PayTR Payment Gateway is always open for direct contributions. Contributions can be in the form of design suggestions, documentation improvements, new component suggestions, code improvements, adding new features or fixing problems. For more information please check our [Contribution Guideline document.](https://github.com/codenteq/paytr-payment-gateway/blob/master/CONTRIBUTING.md)
